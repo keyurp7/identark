@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+<script>
+(function(){
+  var saved;
+  try { saved = localStorage.getItem('identark-theme'); } catch(e){}
+  // Only go dark if user explicitly chose dark before. Otherwise always light.
+  document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | IdentArk</title>
@@ -199,7 +207,7 @@
 <script>
 (function(){
   const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
-  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  let saved2; try{saved2=localStorage.getItem('identark-theme');}catch(e){} let d=saved2==='dark'?'dark':'light';
   r.setAttribute('data-theme',d);
   if(t) t.addEventListener('click',()=>{
     d=d==='dark'?'light':'dark';
