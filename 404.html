@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | IdentArk</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root,[data-theme="light"]{
+  --color-bg: oklch(98% 0.005 250);
+  --color-surface: oklch(100% 0 0);
+  --color-text: oklch(16% 0.02 250);
+  --color-text-muted: oklch(45% 0.015 250);
+  --color-primary: oklch(52% 0.18 240);
+  --color-border: oklch(88% 0.01 250);
+  --font-display: 'Cabinet Grotesk', system-ui, sans-serif;
+  --font-body: 'Satoshi', system-ui, sans-serif;
+}
+[data-theme="dark"]{
+  --color-bg: oklch(11% 0.01 250);
+  --color-surface: oklch(16% 0.016 250);
+  --color-text: oklch(93% 0.007 250);
+  --color-text-muted: oklch(60% 0.01 250);
+  --color-primary: oklch(72% 0.14 220);
+  --color-border: oklch(22% 0.015 250);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--font-body);
+  background:var(--color-bg);
+  color:var(--color-text);
+  padding:2rem;
+  text-align:center;
+}
+
+/* Animated grid background */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(oklch(from var(--color-primary) l c h / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(from var(--color-primary) l c h / 0.04) 1px, transparent 1px);
+  background-size:48px 48px;
+  z-index:0;
+  pointer-events:none;
+}
+
+.page{position:relative;z-index:1;max-width:520px;width:100%}
+
+/* Logo */
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.25rem;
+  color:var(--color-text);
+  text-decoration:none;
+  margin-bottom:3rem;
+}
+.logo svg{color:var(--color-primary)}
+
+/* 404 number */
+.error-code{
+  font-family:var(--font-display);
+  font-size:clamp(6rem, 20vw, 10rem);
+  font-weight:900;
+  line-height:1;
+  color:var(--color-primary);
+  opacity:0.15;
+  letter-spacing:-0.04em;
+  margin-bottom:-1rem;
+  user-select:none;
+}
+
+/* Lock icon */
+.error-icon{
+  width:64px;height:64px;
+  margin:0 auto 1.5rem;
+  background:oklch(from var(--color-primary) l c h / 0.1);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--color-primary);
+}
+
+h1{
+  font-family:var(--font-display);
+  font-size:clamp(1.5rem, 4vw, 2rem);
+  font-weight:800;
+  margin-bottom:0.75rem;
+  color:var(--color-text);
+}
+p{
+  font-size:1rem;
+  color:var(--color-text-muted);
+  line-height:1.6;
+  max-width:40ch;
+  margin:0 auto 2.5rem;
+}
+
+/* Buttons */
+.actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.75rem 1.5rem;
+  border-radius:0.5rem;
+  font-family:var(--font-body);
+  font-size:0.9375rem;
+  font-weight:600;
+  text-decoration:none;
+  cursor:pointer;
+  transition:all 150ms ease;
+  border:none;
+}
+.btn-primary{
+  background:var(--color-primary);
+  color:oklch(98% 0.005 250);
+}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-primary:active{transform:scale(0.97)}
+.btn-ghost{
+  background:transparent;
+  color:var(--color-text-muted);
+  border:1px solid var(--color-border);
+}
+.btn-ghost:hover{background:oklch(from var(--color-primary) l c h / 0.06);color:var(--color-text)}
+.btn-ghost:active{transform:scale(0.97)}
+
+/* Quick links */
+.quick-links{
+  margin-top:3rem;
+  padding-top:2rem;
+  border-top:1px solid var(--color-border);
+  display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;
+}
+.quick-link{
+  font-size:0.875rem;
+  color:var(--color-text-muted);
+  text-decoration:none;
+}
+.quick-link:hover{color:var(--color-primary)}
+
+/* Countdown */
+.countdown{
+  margin-top:1.5rem;
+  font-size:0.8125rem;
+  color:var(--color-text-muted);
+}
+.countdown span{color:var(--color-primary);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- Logo -->
+  <a href="/identark/" class="logo">
+    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="24" height="24" rx="6" stroke="currentColor" stroke-width="2"/>
+      <path d="M11 16h10M16 11v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.3"/>
+    </svg>
+    IdentArk
+  </a>
+
+  <!-- Big 404 -->
+  <div class="error-code" aria-hidden="true">404</div>
+
+  <!-- Icon -->
+  <div class="error-icon">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  </div>
+
+  <h1>Access Denied by the Universe</h1>
+  <p>This page doesn't exist — but your identity security gaps probably do. Let's fix the ones that matter.</p>
+
+  <div class="actions">
+    <a href="/identark/" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      Back to IdentArk
+    </a>
+    <a href="/identark/#contact" class="btn btn-ghost">Book Assessment</a>
+  </div>
+
+  <div class="countdown">Auto-redirecting in <span id="timer">8</span>s</div>
+
+  <div class="quick-links">
+    <a href="/identark/#services" class="quick-link">Services</a>
+    <a href="/identark/#verticals" class="quick-link">Industries</a>
+    <a href="/identark/#dpdp" class="quick-link">DPDP</a>
+    <a href="/identark/#about" class="quick-link">About</a>
+    <a href="/identark/#contact" class="quick-link">Contact</a>
+  </div>
+</div>
+
+<script>
+// Theme
+(function(){
+  const d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', d);
+})();
+
+// Countdown redirect
+let t = 8;
+const el = document.getElementById('timer');
+const interval = setInterval(() => {
+  t--;
+  el.textContent = t;
+  if (t <= 0) {
+    clearInterval(interval);
+    window.location.href = '/identark/';
+  }
+}, 1000);
+</script>
+</body>
+</html>
