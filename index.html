@@ -571,7 +571,11 @@
       </div>
       <div class="contact__form reveal">
         <h3 style="font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:var(--text-xl);margin-bottom:var(--space-6)">Book a Free Assessment</h3>
-        <form onsubmit="handleFormSubmit(event)">
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+          <input type="hidden" name="subject" value="New IdentArk Assessment Request" />
+          <input type="hidden" name="from_name" value="IdentArk Website" />
+          <input type="checkbox" name="botcheck" style="display:none" />
           <div class="form-row">
             <div class="form-group">
               <label for="name">Full Name</label>
@@ -729,13 +733,40 @@ reveals.forEach(el => observer.observe(el));
 // Lucide icons init
 document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
 
-// Form submit
-function handleFormSubmit(e) {
+// Form submit via Web3Forms
+async function handleFormSubmit(e) {
   e.preventDefault();
+  const form = e.target;
   const status = document.getElementById('form-status');
-  status.style.display = 'block';
-  status.textContent = '✓ Message sent. We\'ll be in touch within 24 hours.';
-  e.target.reset();
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  status.style.display = 'none';
+
+  try {
+    const data = new FormData(form);
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+    if (json.success) {
+      status.style.display = 'block';
+      status.style.background = 'oklch(from var(--color-accent) l c h / 0.1)';
+      status.style.color = 'var(--color-accent)';
+      status.textContent = '✓ Message sent. We\'ll be in touch within 24 hours.';
+      form.reset();
+    } else {
+      throw new Error(json.message);
+    }
+  } catch (err) {
+    status.style.display = 'block';
+    status.style.background = 'oklch(from var(--color-error, #c00) l c h / 0.1)';
+    status.style.color = '#e05';
+    status.textContent = '✗ Something went wrong. Email us directly at hello@identark.in';
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.59 6.59l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> Send & Book Assessment';
 }
 </script>
 </body>
