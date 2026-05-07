@@ -5,7 +5,6 @@
 (function(){
   var saved;
   try { saved = localStorage.getItem('identark-theme'); } catch(e){}
-  // Only go dark if user explicitly chose dark before. Otherwise always light.
   document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
 })();
 </script>
@@ -21,7 +20,6 @@
 <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 <style>
-/* Page-specific overrides */
 .page-hero {
   padding: var(--space-32) 0 var(--space-20);
   text-align: center;
@@ -66,7 +64,7 @@
   <div class="container">
     <div class="header__inner">
       <a href="../" class="logo" aria-label="IdentArk home">
-        <img src="./logo.jpeg" alt="IdentArk Logo" class="logo__img" width="44" height="44" loading="eager">
+        <img src="../logo.jpeg" alt="IdentArk Logo" class="logo__img" width="44" height="44" loading="eager">
         <span class="logo__text">Ident<span class="accent">Ark</span></span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
@@ -138,7 +136,7 @@
             </div>
             <div>
               <div class="contact__item-label">Email</div>
-              <div class="contact__item-value"><a href="mailto:hello@identark.in" style="color:var(--color-primary)">hello@identark.in</a></div>
+              <div class="contact__item-value"><a href="mailto:Identark@outlook.com" style="color:var(--color-primary)">Identark@outlook.com</a></div>
             </div>
           </div>
           <div class="contact__item">
@@ -231,7 +229,7 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <a href="../" class="logo" aria-label="IdentArk home">
-          <img src="./logo.jpeg" alt="IdentArk Logo" class="logo__img" width="36" height="36" loading="lazy">
+          <img src="../logo.jpeg" alt="IdentArk Logo" class="logo__img" width="36" height="36" loading="lazy">
           <span class="logo__text">Ident<span class="accent">Ark</span></span>
         </a>
         <p class="footer__tagline">India's boutique IAM partner. Enterprise-grade identity security for SMBs.</p>
@@ -264,9 +262,12 @@
     mb.setAttribute('aria-expanded',open);
     mn.setAttribute('aria-hidden',!open);
   });
-  // Scroll reveal
-  const obs=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
 })();
 </script>
 
@@ -284,16 +285,16 @@ async function handleFormSubmit(e) {
     const json = await res.json();
     if (json.success) {
       status.style.display = 'block';
-      status.style.background = 'oklch(from var(--color-primary) l c h / 0.1)';
+      status.style.background = 'rgba(59,158,202,0.1)';
       status.style.color = 'var(--color-primary)';
-      status.textContent = '✓ Message sent. We\'ll be in touch within 24 hours.';
+      status.textContent = '\u2713 Message sent. We\'ll be in touch within 24 hours.';
       form.reset();
     } else { throw new Error(json.message); }
   } catch(err) {
     status.style.display = 'block';
-    status.style.background = 'oklch(0.3 0.05 20 / 0.2)';
+    status.style.background = 'rgba(220,50,50,0.1)';
     status.style.color = '#f87';
-    status.textContent = '✗ Something went wrong. Email us at hello@identark.in';
+    status.textContent = '\u2717 Something went wrong. Email us at Identark@outlook.com';
   }
   btn.disabled = false;
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.59 6.59l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> Send & Book Assessment';
