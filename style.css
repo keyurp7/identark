@@ -511,3 +511,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-radius: var(--radius-sm);
 }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+
+
+/* Logo image - make the mark visible on dark nav */
+.logo__img {
+  height: 42px;
+  width: 42px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+  mix-blend-mode: screen;
+  filter: brightness(1.2) contrast(1.1);
+}
