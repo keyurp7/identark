@@ -688,7 +688,7 @@
 (function(){
   const t = document.querySelector('[data-theme-toggle]');
   const r = document.documentElement;
-  let d = r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  let d = r.getAttribute('data-theme') || 'light';
   r.setAttribute('data-theme', d);
   function updateIcon() {
     if (!t) return;
