@@ -494,3 +494,20 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .process__steps { grid-template-columns: 1fr; }
   .footer__bottom { flex-direction: column; gap: var(--space-3); text-align: center; }
 }
+
+/* ===== TOUCH & KEYBOARD UX ===== */
+/* Active states for tap feedback on mobile */
+.btn:active { transform: scale(0.97); opacity: 0.9; }
+.nav__link:active { background: oklch(from var(--color-primary) l c h / 0.08); }
+.service-card:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+.vertical-card:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+.service-pill:active { transform: translateY(0); }
+.footer__links a:active { color: var(--color-primary); }
+
+/* Focus-visible for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+button:focus-visible, a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
