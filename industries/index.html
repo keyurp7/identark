@@ -5,7 +5,6 @@
 (function(){
   var saved;
   try { saved = localStorage.getItem('identark-theme'); } catch(e){}
-  // Only go dark if user explicitly chose dark before. Otherwise always light.
   document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
 })();
 </script>
@@ -21,41 +20,20 @@
 <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 <style>
-/* Page-specific overrides */
-.page-hero {
-  padding: var(--space-32) 0 var(--space-20);
-  text-align: center;
-}
-.page-hero .section-label {
-  display: inline-block;
-  margin-bottom: var(--space-4);
-}
-.page-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: var(--space-6);
-}
-.page-hero p {
-  font-size: var(--text-lg);
-  color: var(--color-text-muted);
-  max-width: 56ch;
-  margin: 0 auto var(--space-10);
-}
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-8);
-  justify-content: center;
-}
+.page-hero { padding: var(--space-32) 0 var(--space-20); text-align: center; }
+.page-hero .section-label { display: inline-block; margin-bottom: var(--space-4); }
+.page-hero h1 { font-family: 'Cabinet Grotesk', sans-serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: var(--space-6); }
+.page-hero p { font-size: var(--text-lg); color: var(--color-text-muted); max-width: 56ch; margin: 0 auto var(--space-10); }
+.breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-8); justify-content: center; }
 .breadcrumb a { color: var(--color-primary); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb-sep { opacity: 0.4; }
 .nav__link.active { color: var(--color-primary); }
+/* Mobile hero padding fix */
+@media (max-width: 768px) {
+  .page-hero { padding: calc(var(--space-20) + 4rem) 0 var(--space-12); }
+  .page-hero h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+}
 </style>
 </head>
 <body>
@@ -66,7 +44,7 @@
   <div class="container">
     <div class="header__inner">
       <a href="../" class="logo" aria-label="IdentArk home">
-        <img src="./logo.jpeg" alt="IdentArk Logo" class="logo__img" width="44" height="44" loading="eager">
+        <img src="../logo.jpeg" alt="IdentArk Logo" class="logo__img" width="44" height="44" loading="eager">
         <span class="logo__text">Ident<span class="accent">Ark</span></span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
@@ -78,10 +56,10 @@
           <li><a href="../about/" class="nav__link">About</a></li>
           <li><a href="../contact/" class="nav__link">Contact</a></li>
         </ul>
-        <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode">
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
-        <a href="../index.html#contact" class="btn btn-primary btn-sm">Book a Call</a>
+        <a href="../contact/" class="btn btn-primary btn-sm">Book a Call</a>
       </nav>
       <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -91,7 +69,7 @@
   <div class="mobile-nav" id="mobileNav" aria-hidden="true">
     <ul role="list">
       <li><a href="../index.html#services" class="nav__link">Services</a></li>
-      <li><a href="../industries/" class="nav__link">Industries</a></li>
+      <li><a href="../industries/" class="nav__link active">Industries</a></li>
       <li><a href="../index.html#dpdp" class="nav__link">DPDP</a></li>
       <li><a href="../index.html#process" class="nav__link">Process</a></li>
       <li><a href="../about/" class="nav__link">About</a></li>
@@ -110,9 +88,9 @@
         <span>Industries</span>
       </nav>
       <span class="section-label reveal">Industries We Serve</span>
-      <h1 class="reveal">India's SMB Sector,<br/>Secured by Design</h1>
+      <h1 class="reveal">India’s SMB Sector,<br/>Secured by Design</h1>
       <div class="reveal" style="margin:var(--space-6) auto 0;text-align:center;display:flex;justify-content:center;">
-        <img src="../logo.jpeg" alt="IdentArk" width="140" height="140" loading="eager" style="width:140px;height:140px;object-fit:contain;border-radius:14px;mix-blend-mode:screen;filter:brightness(1.3) contrast(1.1);margin:0 auto;">
+        <img src="../logo.jpeg" alt="IdentArk" width="120" height="120" loading="eager" style="width:120px;height:120px;object-fit:contain;border-radius:14px;">
       </div>
       <p class="reveal">Every industry has a different compliance baseline and threat model. IdentArk brings pre-built playbooks for each vertical so delivery starts on day one, not month three.</p>
     </div>
@@ -124,9 +102,9 @@
 
         <div class="vertical-card reveal">
           <div class="vertical-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <h3 class="vertical-card__name">BFSI & Fintech</h3>
+          <h3 class="vertical-card__name">BFSI &amp; Fintech</h3>
           <p class="vertical-card__desc">RBI IT Framework, SEBI CSCRF, and DPDP-aligned identity controls. Privileged access over core banking, maker-checker workflows, and fraud-resistant MFA.</p>
-          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);">
+          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;">
             <li>Core banking PAM vaults</li>
             <li>Maker-checker access workflows</li>
             <li>RBI IT Framework alignment</li>
@@ -138,7 +116,7 @@
           <div class="vertical-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
           <h3 class="vertical-card__name">Healthcare</h3>
           <p class="vertical-card__desc">DPDP health data classification, role-based access to patient records, and audit trails for clinical staff. Keep PHI protected without slowing down care delivery.</p>
-          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);">
+          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;">
             <li>Patient data access controls</li>
             <li>Clinical staff role engineering</li>
             <li>DPDP health data classification</li>
@@ -150,7 +128,7 @@
           <div class="vertical-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
           <h3 class="vertical-card__name">EdTech</h3>
           <p class="vertical-card__desc">Student data governance, faculty access lifecycle, and third-party vendor access reviews. DPDP compliance for platforms handling minor data at scale.</p>
-          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);">
+          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;">
             <li>Student data governance</li>
             <li>Faculty lifecycle management</li>
             <li>Vendor access reviews</li>
@@ -160,10 +138,10 @@
 
         <div class="vertical-card reveal">
           <div class="vertical-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3 class="vertical-card__name">SaaS & Technology</h3>
+          <h3 class="vertical-card__name">SaaS &amp; Technology</h3>
           <p class="vertical-card__desc">SSO federation, developer access governance, and cloud entitlement management. Build identity security that scales with your product without friction.</p>
-          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);">
-            <li>SSO & federation setup</li>
+          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;">
+            <li>SSO &amp; federation setup</li>
             <li>Developer access governance</li>
             <li>Cloud entitlement management</li>
             <li>SOC 2 identity controls</li>
@@ -172,9 +150,9 @@
 
         <div class="vertical-card reveal">
           <div class="vertical-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-          <h3 class="vertical-card__name">Manufacturing & GIFT City</h3>
+          <h3 class="vertical-card__name">Manufacturing &amp; GIFT City</h3>
           <p class="vertical-card__desc">OT/IT boundary access controls, contractor lifecycle management, and GIFT City regulatory alignment for international financial services firms.</p>
-          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);">
+          <ul style="margin-top:var(--space-4);padding-left:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm);display:flex;flex-direction:column;gap:var(--space-2);list-style:disc;">
             <li>OT/IT boundary controls</li>
             <li>Contractor lifecycle management</li>
             <li>GIFT City regulatory alignment</li>
@@ -184,8 +162,8 @@
 
         <div class="vertical-card reveal" style="background:oklch(from var(--color-primary) l c h / 0.06);border-color:oklch(from var(--color-primary) l c h / 0.2);">
           <div class="vertical-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-          <h3 class="vertical-card__name">Don't See Your Industry?</h3>
-          <p class="vertical-card__desc">IdentArk's framework adapts to any regulated environment. If you handle sensitive data and need identity security, we have a playbook for you.</p>
+          <h3 class="vertical-card__name">Don’t See Your Industry?</h3>
+          <p class="vertical-card__desc">IdentArk’s framework adapts to any regulated environment. If you handle sensitive data and need identity security, we have a playbook for you.</p>
           <a href="../contact/" class="btn btn-primary" style="margin-top:var(--space-6);display:inline-flex;align-items:center;gap:0.4rem;">Book a Free Assessment</a>
         </div>
 
@@ -200,10 +178,10 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <a href="../" class="logo" aria-label="IdentArk home">
-          <img src="./logo.jpeg" alt="IdentArk Logo" class="logo__img" width="36" height="36" loading="lazy">
+          <img src="../logo.jpeg" alt="IdentArk Logo" class="logo__img" width="36" height="36" loading="lazy">
           <span class="logo__text">Ident<span class="accent">Ark</span></span>
         </a>
-        <p class="footer__tagline">India's boutique IAM partner. Enterprise-grade identity security for SMBs.</p>
+        <p class="footer__tagline">India’s boutique IAM partner. Enterprise-grade identity security for SMBs.</p>
       </div>
       <div class="footer__links">
         <a href="../industries/" class="footer__link">Industries</a>
@@ -218,24 +196,57 @@
 
 <script>
 (function(){
-  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
-  let d='light'; try{if(localStorage.getItem('identark-theme')==='dark')d='dark';}catch(e){}
-  r.setAttribute('data-theme',d);
-  if(t) t.addEventListener('click',()=>{
-    d=d==='dark'?'light':'dark';
-    r.setAttribute('data-theme',d);
-    t.setAttribute('aria-label','Switch to '+(d==='dark'?'light':'dark')+' mode');
-    t.innerHTML=d==='dark'?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  // Theme
+  var t = document.querySelector('[data-theme-toggle]');
+  var r = document.documentElement;
+  var d = 'light';
+  try { if(localStorage.getItem('identark-theme')==='dark') d='dark'; } catch(e){}
+  r.setAttribute('data-theme', d);
+  if(t) t.addEventListener('click', function(){
+    d = d==='dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    try { localStorage.setItem('identark-theme', d); } catch(e){}
   });
-  const mb=document.querySelector('.mobile-menu-btn'),mn=document.getElementById('mobileNav');
-  if(mb&&mn) mb.addEventListener('click',()=>{
-    const open=mn.classList.toggle('open');
-    mb.setAttribute('aria-expanded',open);
-    mn.setAttribute('aria-hidden',!open);
-  });
-  // Scroll reveal
-  const obs=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // Mobile nav — .is-open matches style.css
+  var mb = document.querySelector('.mobile-menu-btn');
+  var mn = document.getElementById('mobileNav');
+  if(mb && mn){
+    mb.addEventListener('click', function(){
+      var open = mn.classList.toggle('is-open');
+      mb.setAttribute('aria-expanded', open);
+      mn.setAttribute('aria-hidden', !open);
+    });
+    // Close nav when a link is tapped
+    mn.addEventListener('click', function(e){
+      if(e.target.classList.contains('nav__link')){
+        mn.classList.remove('is-open');
+        mb.setAttribute('aria-expanded', 'false');
+        mn.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // Header scroll shadow
+  var header = document.getElementById('header');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('header--scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // Scroll reveal — .in-view matches style.css
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in-view');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
 })();
 </script>
 </body>
