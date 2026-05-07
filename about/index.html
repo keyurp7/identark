@@ -207,7 +207,7 @@
 <script>
 (function(){
   const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
-  let saved2; try{saved2=localStorage.getItem('identark-theme');}catch(e){} let d=saved2==='dark'?'dark':'light';
+  let d='light'; try{if(localStorage.getItem('identark-theme')==='dark')d='dark';}catch(e){}
   r.setAttribute('data-theme',d);
   if(t) t.addEventListener('click',()=>{
     d=d==='dark'?'light':'dark';
