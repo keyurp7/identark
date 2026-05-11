@@ -5,7 +5,6 @@
 (function(){
   var saved;
   try { saved = localStorage.getItem('identark-theme'); } catch(e){}
-  // Only go dark if user explicitly chose dark before. Otherwise always light.
   document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
 })();
 </script>
@@ -24,10 +23,8 @@
 </head>
 <body>
 
-<!-- SKIP LINK -->
 <a href="#main" class="sr-only">Skip to content</a>
 
-<!-- HEADER -->
 <header class="header" id="header">
   <div class="container">
     <div class="header__inner">
@@ -178,26 +175,29 @@
   </div>
 </section>
 
-<!-- STATS BAR -->
-<section class="stats" aria-label="Key metrics">
+<!-- FOUNDING CLIENT PROGRAMME -->
+<section class="stats" aria-label="Founding Client Programme">
   <div class="container">
-    <div class="stats__grid">
-      <div class="stat reveal">
-        <div class="stat__value">50M+</div>
-        <div class="stat__label">Indian SMBs needing IAM</div>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:var(--space-10) 0;gap:var(--space-6);">
+      <span class="section-label" style="display:inline-block;">Founding Client Programme</span>
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;line-height:1.2;max-width:18ch;">
+        10 Slots. One Per Vertical.
+      </h2>
+      <p style="font-size:var(--text-base);color:var(--color-text-muted);max-width:52ch;line-height:1.7;">
+        We're taking on 10 founding clients. Each gets a structured IAM gap analysis — practitioner-delivered, no cost. Spots are allocated by vertical. If yours is open, it's worth a conversation.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3);margin-top:var(--space-2);">
+        <span class="skill-tag">BFSI & Fintech</span>
+        <span class="skill-tag">Healthcare</span>
+        <span class="skill-tag">EdTech</span>
+        <span class="skill-tag">IT / SaaS</span>
+        <span class="skill-tag">GIFT City</span>
+        <span class="skill-tag">Manufacturing</span>
       </div>
-      <div class="stat reveal">
-        <div class="stat__value">₹250Cr</div>
-        <div class="stat__label">Average breach cost in India</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat__value">DPDP</div>
-        <div class="stat__label">Act compliance mandatory</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat__value">72hrs</div>
-        <div class="stat__label">Breach notification window</div>
-      </div>
+      <a href="#contact" class="btn btn-primary" style="margin-top:var(--space-2);">
+        Check If Your Vertical Is Open
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -489,7 +489,7 @@
         </div>
         <p class="founder-bio">IAM engineer and architect with hands-on experience deploying SailPoint IIQ, configuring SCIM provisioning workflows, implementing SOD policies, and building SSO integrations between Entra ID and enterprise applications. Previously worked across enterprise identity projects in India and Australia.</p>
         <div class="about__skills" style="margin-top:0">
-          <span class="skill-tag">10+ yrs IAM delivery</span>
+          <span class="skill-tag">5+ yrs IAM delivery</span>
           <span class="skill-tag">Melbourne → India</span>
           <span class="skill-tag">GIFT City focused</span>
         </div>
@@ -635,7 +635,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer" aria-label="Site footer">
   <div class="container">
     <div class="footer__inner">
@@ -677,14 +676,13 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2025 IdentArk. All rights reserved.</span>
+      <span>© 2026 IdentArk. All rights reserved.</span>
       <span>IAM · PAM · IGA · DPDP · India</span>
     </div>
   </div>
 </footer>
 
 <script>
-// Theme toggle
 (function(){
   const t = document.querySelector('[data-theme-toggle]');
   const r = document.documentElement;
@@ -701,13 +699,11 @@
   t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); updateIcon(); });
 })();
 
-// Header scroll state
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   header.classList.toggle('header--scrolled', window.scrollY > 10);
 }, { passive: true });
 
-// Mobile menu
 const btn = document.getElementById('mobileMenuBtn');
 const nav = document.getElementById('mobileNav');
 btn && btn.addEventListener('click', () => {
@@ -721,17 +717,14 @@ nav && nav.addEventListener('click', e => {
   }
 });
 
-// Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
 
-// Lucide icons init
 document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
 
-// Form submit via Web3Forms
 async function handleFormSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -740,13 +733,9 @@ async function handleFormSubmit(e) {
   btn.disabled = true;
   btn.textContent = 'Sending...';
   status.style.display = 'none';
-
   try {
     const data = new FormData(form);
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: data
-    });
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
     const json = await res.json();
     if (json.success) {
       status.style.display = 'block';
@@ -754,14 +743,12 @@ async function handleFormSubmit(e) {
       status.style.color = 'var(--color-accent)';
       status.textContent = '✓ Message sent. We\'ll be in touch within 24 hours.';
       form.reset();
-    } else {
-      throw new Error(json.message);
-    }
+    } else { throw new Error(json.message); }
   } catch (err) {
     status.style.display = 'block';
     status.style.background = 'oklch(from var(--color-error, #c00) l c h / 0.1)';
     status.style.color = '#e05';
-    status.textContent = '✗ Something went wrong. Email us directly at hello@identark.in';
+    status.textContent = '✗ Something went wrong. Email us directly at Identark@outlook.com';
   }
   btn.disabled = false;
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.59 6.59l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> Send & Book Assessment';
