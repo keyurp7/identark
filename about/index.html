@@ -87,7 +87,7 @@
       <div class="reveal" style="margin:var(--space-6) auto 0;text-align:center;display:flex;justify-content:center;">
         <img src="../logo.jpeg" alt="IdentArk" width="140" height="140" loading="eager" style="width:140px;height:140px;object-fit:contain;border-radius:14px;">
       </div>
-      <p class="reveal">IdentArk was founded on a simple observation: Indian SMBs were either buying enterprise IAM platforms they couldn't operate, or ignoring identity security entirely.</p>
+      <p class="reveal">Indian SMBs were either buying enterprise IAM platforms they couldn't operate, or ignoring identity security entirely. IdentArk exists between those two failure modes.</p>
     </div>
   </section>
 
@@ -97,7 +97,7 @@
         <div>
           <span class="section-label">Our Story</span>
           <h2 class="section-title" style="margin-top:var(--space-3);">We Exist Between<br/>Two Failure Modes</h2>
-          <p class="about__text">Indian SMBs were either buying enterprise IAM platforms they couldn't operate, or ignoring identity security entirely and waiting for a breach to force the conversation. IdentArk exists between those two failure modes.</p>
+          <p class="about__text">Most IAM vendors sell platforms. Most consultancies sell hours. Indian SMBs end up with software they can't run or a retainer with no end date. IdentArk was built to fix that — fixed-scope delivery, hands-on engineers, working systems on the other side.</p>
           <p class="about__text">Our team has hands-on delivery experience with SailPoint Identity IQ, Microsoft Entra ID, Okta, and Active Directory across BFSI, healthcare, and technology verticals. We deploy, configure, and hand over working systems — not slide decks.</p>
           <p class="about__text">Founded and operating from India, with deep awareness of the DPDP Act, RBI IT Framework, and SEBI CSCRF requirements that Indian businesses actually face.</p>
         </div>
@@ -106,13 +106,13 @@
             <div class="founder-avatar">KP</div>
             <div class="founder-info">
               <h4>Keyur Purohit</h4>
-              <p>Founder & Principal IAM Architect</p>
+              <p>Founder &amp; Principal IAM Architect</p>
             </div>
           </div>
-          <p class="founder-bio">IAM engineer and architect with hands-on experience deploying SailPoint IIQ, configuring SCIM provisioning workflows, implementing SOD policies, and building SSO integrations between Entra ID and enterprise applications. Previously worked across enterprise identity projects in India and Australia.</p>
+          <p class="founder-bio">IAM engineer and architect with hands-on experience deploying SailPoint IIQ, configuring SCIM provisioning workflows, implementing SOD policies, and building SSO integrations between Entra ID and enterprise applications. Keyur has delivered enterprise identity projects across India and Australia.</p>
           <div class="about__skills" style="margin-top:var(--space-4);">
             <span class="skill-tag">5+ yrs IAM delivery</span>
-            <span class="skill-tag">Melbourne → India</span>
+            <span class="skill-tag">Melbourne &rarr; India</span>
             <span class="skill-tag">GIFT City focused</span>
           </div>
         </div>
@@ -149,7 +149,7 @@
     <div class="container" style="text-align:center;max-width:600px;margin-inline:auto;">
       <span class="section-label reveal">Ready to Talk?</span>
       <h2 class="section-title reveal">Let's Fix Your Identity Gaps</h2>
-      <p class="reveal" style="color:var(--color-text-muted);margin-bottom:var(--space-8);">Tell us about your environment. We'll map the gaps, prioritise the risks, and show you exactly what a fix looks like — no commitment required.</p>
+      <p class="reveal" style="color:var(--color-text-muted);margin-bottom:var(--space-8);">Tell us about your environment. We'll map the gaps, prioritise the risks, and show you exactly what a fix looks like - no commitment required.</p>
       <a href="../contact/" class="btn btn-primary reveal">Book a Free Assessment</a>
     </div>
   </section>
@@ -179,7 +179,6 @@
 
 <script>
 (function(){
-  // Theme
   var t = document.querySelector('[data-theme-toggle]');
   var r = document.documentElement;
   var d = 'light';
@@ -191,7 +190,6 @@
     try { localStorage.setItem('identark-theme', d); } catch(e){}
   });
 
-  // Mobile nav — toggle .is-open to match style.css
   var mb = document.querySelector('.mobile-menu-btn');
   var mn = document.getElementById('mobileNav');
   if(mb && mn) mb.addEventListener('click', function(){
@@ -200,7 +198,6 @@
     mn.setAttribute('aria-hidden', !open);
   });
 
-  // Scroll reveal — add .in-view to match style.css rule .reveal.in-view
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -212,7 +209,6 @@
     }, {threshold: 0.1});
     document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
   } else {
-    // Fallback for older browsers — just show everything
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
   }
 })();
