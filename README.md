@@ -10,7 +10,8 @@ IdentArk delivers IAM, PAM, Identity Governance, and DPDP readiness to India's g
 - Identity Governance & Administration (IGA)
 - DPDP Readiness (Digital Personal Data Protection Act 2023)
 
-**Contact:** Identark@outlook.com  
+**Contact:** Security@identark.co.in
+
 **LinkedIn:** https://www.linkedin.com/company/116654145/
 
 ---
